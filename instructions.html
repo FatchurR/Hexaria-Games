@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexaria Instructions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2563eb",
+              borderSoft: "#e5e7eb",
+              textMain: "#1f2937",
+              textMuted: "#64748b",
+              canvas: "#f8fafc",
+            },
+            borderRadius: { xl2: "1rem" },
+            boxShadow: { soft: "0 8px 30px rgba(2, 6, 23, 0.06)" },
+            fontFamily: { inter: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-canvas text-textMain font-inter">
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      <div class="bg-white border border-borderSoft rounded-xl2 shadow-soft p-8">
+        <h2 class="text-3xl font-bold text-primary mb-4">How To Play Hexaria</h2>
+        <ol class="list-decimal list-inside space-y-2 text-textMain/90 leading-relaxed">
+          <li>Input Player 1 and Player 2 names.</li>
+          <li>Select the game level (easy, medium, hard).</li>
+          <li>Click "New Game" to start the game.</li>
+          <li>Player 1 (red) takes the first turn.</li>
+          <li>Click on an empty hexagon to place your hexagon.</li>
+          <li>Take over opponent's hexagons by placing a higher value hexagon adjacent to them.</li>
+          <li>The game ends when there are no empty hexagons left.</li>
+          <li>The player with the highest score wins.</li>
+        </ol>
+      </div>
+    </main>
+  </body>
+</html>

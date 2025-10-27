@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexaria Game</title>
+
+    <link rel="icon" href="./assets/images/logoSmartOne.jpeg" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2563eb",
+              primaryDark: "#1e40af",
+              surface: "#ffffff",
+              canvas: "#f8fafc",
+              textMain: "#1f2937",
+              textMuted: "#64748b",
+              borderSoft: "#e5e7eb",
+            },
+            fontFamily: {
+              inter: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 8px 30px rgba(2, 6, 23, 0.06)",
+            },
+            borderRadius: {
+              xl2: "1rem",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+
+  <body class="min-h-screen bg-canvas text-textMain font-inter antialiased">
+    <header class="w-full bg-surface/90 backdrop-blur border-b border-borderSoft sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="./assets/images/logoSmartOne.jpeg" alt="Hexaria Logo" class="w-9 h-9 object-contain rounded-md" />
+          <span class="text-lg sm:text-xl font-semibold text-primary">Hexaria Game</span>
+        </div>
+        <nav class="hidden sm:flex items-center gap-6 text-sm text-textMuted">
+          <a href="index.html" class="hover:text-primary transition">Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="welcome-screen" class="welcome-screen !h-auto py-12 sm:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <section class="space-y-5">
+          <h1 class="text-4xl sm:text-5xl font-bold leading-tight">
+            Selamat Datang di <span class="text-primary">Hexaria</span>
+          </h1>
+          <p class="text-lg text-textMuted">
+            Strategi, Logika, Menang  main bareng bestie atau lawan bot keren.
+            Pilih level lo, taro hexagon, dan kuasain papannya!
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-surface rounded-xl2 border border-borderSoft p-5 shadow-soft">
+              <h3 class="font-semibold mb-1">UI Kekinian</h3>
+              <p class="text-sm text-textMuted">Tampilan clean abis, aesthetic banget!</p>
+            </div>
+            <div class="bg-surface rounded-xl2 border border-borderSoft p-5 shadow-soft">
+              <h3 class="font-semibold mb-1">Responsive</h3>
+              <p class="text-sm text-textMuted">Bisa main di HP, tablet, atau laptop</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="welcome-content bg-surface rounded-xl2 border border-borderSoft p-6 sm:p-8 shadow-soft">
+          <h2 class="text-2xl font-semibold mb-6">Gas Main!</h2>
+
+          <div class="form-group mb-4">
+            <label for="player1-name" class="block text-sm font-medium text-textMuted mb-1">Nama Player 1</label>
+            <input
+              type="text"
+              id="player1-name"
+              placeholder="Masukin nama kamu"
+              autocomplete="off"
+              autocapitalize="on"
+              class="w-full h-11 px-3 rounded-lg border border-borderSoft focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="player2-name" class="block text-sm font-medium text-textMuted mb-1">Nama Player 2 (atau pilih Bot)</label>
+            <input
+              type="text"
+              id="player2-name"
+              placeholder="Masukin nama temen kamu"
+              autocomplete="off"
+              autocapitalize="on"
+              class="w-full h-11 px-3 rounded-lg border border-borderSoft focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <label class="mt-2 inline-flex items-center gap-2 text-sm text-textMuted select-none">
+              <input type="checkbox" id="play-with-bot" class="rounded text-primary focus:ring-primary" />
+              Main sama Bot aja
+            </label>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="game-level" class="block text-sm font-medium text-textMuted mb-1">Level Game</label>
+            <select
+              id="game-level"
+              class="w-full h-11 px-3 rounded-lg border border-borderSoft focus:outline-none focus:ring-2 focus:ring-primary capitalize"
+            >
+              <option value="">Pilih Level</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Normal</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+          <div class="button-group flex items-center gap-3 mt-6">
+            <button
+              id="play-game"
+              class="play-game px-5 h-11 rounded-lg bg-primary text-white font-medium hover:bg-primaryDark transition disabled:opacity-40"
+              disabled
+            >
+              Gas Main!
+            </button>
+            <button
+              class="instruction px-5 h-11 rounded-lg border border-primary text-primary font-medium hover:bg-primary hover:text-white transition"
+            >
+              Cara Main
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <section class="hexaria-container" style="display: none">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-6">
+        <h1 class="hexaria-title text-3xl sm:text-4xl font-bold text-primary">Hexaria</h1>
+
+        <div class="player-info text-sm text-textMuted flex items-center justify-between bg-surface border border-borderSoft rounded-xl2 px-4 py-3">
+          <div id="player1-info">Player 1: <span id="player1-name-display"></span></div>
+          <div id="player2-info">Player 2: <span id="player2-name-display"></span></div>
+        </div>
+
+        <div class="game-controls flex flex-wrap gap-3">
+          <button id="new-game" class="px-4 h-10 rounded-lg bg-primary text-white font-medium hover:bg-primaryDark transition">Main Lagi</button>
+          <button id="sort-score" class="px-4 h-10 rounded-lg border border-primary text-primary font-medium hover:bg-primary hover:text-white transition">Urutkan Skor</button>
+          <button class="instruction px-4 h-10 rounded-lg border border-borderSoft text-textMain font-medium hover:bg-canvas transition">Cara Main</button>
+        </div>
+
+        <div class="bg-surface border border-borderSoft rounded-xl2 shadow-soft p-4 sm:p-6">
+          <canvas id="hexaria-board" width="500" height="400" class="mx-auto rounded-lg border border-borderSoft"></canvas>
+          <div class="mt-4 text-center space-y-1">
+            <div id="current-hexagon" class="text-sm text-textMuted">Current Hexagon:</div>
+            <div id="turn-indicator" class="text-sm font-semibold text-primary">Turn: <span id="current-turn"></span></div>
+          </div>
+        </div>
+
+        <div class="player-info text-sm text-textMain font-medium flex items-center justify-between bg-surface border border-borderSoft rounded-xl2 px-4 py-3">
+          <div id="player1-score">Player 1 Score: 0</div>
+          <div id="player2-score">Player 2 Score: 0</div>
+        </div>
+
+        <div class="leaderboard bg-surface p-5 rounded-xl2 border border-borderSoft shadow-soft w-full sm:w-[420px]">
+          <h3 class="text-lg font-semibold text-primary text-center mb-3">Papan Skor</h3>
+          <div id="leaderboard-content" class="text-center text-textMuted space-y-1 max-h-[320px] overflow-y-auto"></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="instruction-modal" class="modal fixed inset-0 hidden bg-black/40 backdrop-blur-sm items-center justify-center z-50">
+      <div class="modal-content bg-surface text-textMain w-[92%] max-w-lg rounded-xl2 border border-borderSoft shadow-soft relative p-6">
+        <span class="close-button absolute top-3 right-4 text-xl text-textMuted hover:text-primary cursor-pointer select-none">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 text-primary">Cara Main Hexaria</h2>
+        <ol class="list-decimal list-inside space-y-2 text-textMain/90 leading-relaxed">
+          <li>Masukin nama Player 1 sama Player 2 ya.</li>
+          <li>Pilih level sesuai skill lo (santuy, lumayan, atau sadis).</li>
+          <li>Klik "Main Lagi" buat mulai gamenya.</li>
+          <li>Player 1 (merah) main duluan nih.</li>
+          <li>Klik hexagon kosong buat naruh hexagon lo.</li>
+          <li>Rebut hexagon lawan dengan naruh hexagon yang nilainya lebih gede di sebelahnya.</li>
+          <li>Game selesai kalo udah gak ada hexagon kosong lagi.</li>
+          <li>Yang skornya paling tinggi, dia yang menang!</li>
+        </ol>
+      </div>
+    </div>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
